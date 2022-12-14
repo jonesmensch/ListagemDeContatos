@@ -11,21 +11,6 @@ namespace ListagemDeContatos.Controllers
             return View();
         }
 
-        public IActionResult Contatos()
-        {
-            return View();
-        }
-
-        public IActionResult Editar()
-        {
-            return View();
-        }
-
-        public IActionResult Deletar()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

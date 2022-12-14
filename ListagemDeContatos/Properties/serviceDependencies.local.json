@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "secretStore": "LocalSecretsFile",
+      "type": "mssql.local",
+      "connectionId": "ConnectionStrings:Server=.:;Database=DB_SistemaContatos;UserId=sa;Password=555",
+      "dynamicId": null
+    }
+  }
+}

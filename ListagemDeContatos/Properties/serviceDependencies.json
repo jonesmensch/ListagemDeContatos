@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "mssql1": {
+      "type": "mssql",
+      "connectionId": "ConnectionStrings:Server=.:;Database=DB_SistemaContatos;UserId=sa;Password=555",
+      "dynamicId": null
+    }
+  }
+}
