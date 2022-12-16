@@ -34,24 +34,62 @@ namespace ListagemDeContatos.Controllers
         }
 
         [HttpPost]
-        public IActionResult Adicionar(ContatoModel contato)
+        public IActionResult NovoContato(ContatoModel contato)
         {
-            _contatoRepositorio.Adicionar(contato);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _contatoRepositorio.Adicionar(contato);
+                    TempData["MensagemSucesso"] = "Contato cadastrado com sucesso!";
+                    return RedirectToAction("Index");
+                }
+
+                return View("Index");
+            }
+            catch (Exception erro)
+            {
+                TempData["MensagemErro"] = $"Não conseguimos cadastrar seu contato, tente novamente! Detalhe do erro: {erro.Message}";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
-        public IActionResult Alterar(ContatoModel contato)
+        public IActionResult Editar(ContatoModel contato)
         {
-            _contatoRepositorio.Alterar(contato);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _contatoRepositorio.Editar(contato);
+                    TempData["MensagemSucesso"] = "Contato alterado com sucesso!";
+                    return RedirectToAction(nameof(Index));
+                }
+
+                return View(contato);
+            }
+            catch (Exception erro)
+            {
+                TempData["MensagemErro"] = $"Não conseguimos editar seu contato, tente novamente! Detalhe do erro: {erro.Message}";
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost]
         public IActionResult Excluir(ContatoModel contato)
         {
-            _contatoRepositorio.Excluir(contato);
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                _contatoRepositorio.Excluir(contato);
+                TempData["MensagemSucesso"] = "Contato excluido com sucesso!";
+                return RedirectToAction(nameof(Index));
+            }
+
+            catch (Exception erro)
+            {
+                TempData["MensagemErro"] = $"Não conseguimos excluir seu contato, tente novamente! Detalhe do erro: {erro.Message}";
+                return RedirectToAction("Index");
+            }
         }
     }
 }

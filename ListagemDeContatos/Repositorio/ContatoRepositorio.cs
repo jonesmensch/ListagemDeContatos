@@ -1,5 +1,6 @@
 ﻿using ListagemDeContatos.Data;
 using ListagemDeContatos.Models;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using System.Linq;
 
 namespace ListagemDeContatos.Repositorio
@@ -30,7 +31,7 @@ namespace ListagemDeContatos.Repositorio
             return contato;
         }
 
-        public ContatoModel Alterar(ContatoModel contato)
+        public ContatoModel Editar(ContatoModel contato)
         {
             var contatoDB = FindById(contato.Id);
 
@@ -40,9 +41,9 @@ namespace ListagemDeContatos.Repositorio
             }
             else
             {
-                contatoDB.Nome= contato.Nome;
-                contatoDB.Email= contato.Email;
-                contatoDB.Telefone= contato.Telefone;
+                contatoDB.Nome = contato.Nome;
+                contatoDB.Email = contato.Email;
+                contatoDB.Telefone = contato.Telefone;
             }
 
             _bancoContext.Contato.Update(contatoDB);
@@ -59,13 +60,11 @@ namespace ListagemDeContatos.Repositorio
             {
                 throw new System.Exception("Contato não encontrado!");
             }
-            else
-            {
-                _bancoContext.Contato.Remove(contatoDB); 
-                _bancoContext.SaveChanges();
 
-                return contatoDB;
-            }
+            _bancoContext.Contato.Remove(contatoDB);
+            _bancoContext.SaveChanges();
+
+            return contatoDB;
         }
     }
 }
