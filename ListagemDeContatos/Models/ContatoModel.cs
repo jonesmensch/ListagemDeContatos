@@ -7,14 +7,14 @@ namespace ListagemDeContatos.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage ="O nome digitado é inválido!")]
-        public string? Nome { get; set; }
+        public string Nome { get; set; }
 
         [Required(ErrorMessage = "Digite o Email!")]
         [EmailAddress(ErrorMessage ="O Email digitado é inválido!")]
-        public string? Email { get; set; }
+        public string Email { get; set; }
 
         [Required(ErrorMessage = "Digite um número para contato!")]
         [Phone(ErrorMessage = "O número digitado é inválido!")]
-        public string? Telefone { get; set; }
+        public string Telefone { get; set; }
     }
 }

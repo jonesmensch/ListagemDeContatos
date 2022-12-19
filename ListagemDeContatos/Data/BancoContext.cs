@@ -11,6 +11,8 @@ namespace ListagemDeContatos.Data
         public BancoContext(DbContextOptions<BancoContext> options) : base(options)
         {
         }
+
         public DbSet<ContatoModel> Contato { get; set; }
+        public DbSet<UsuarioModel> Usuarios { get; set; }
     }
 }

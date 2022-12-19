@@ -1,0 +1,37 @@
+﻿@model UsuarioModel
+@{
+    ViewData["Title"] = "Deletar usuário";
+}
+
+<div class="text-center">
+    <h1 class="display-10">Tem certeza que deseja excluir este usuário?</h1>
+    <hr />
+
+    <form asp-controller="Usuario" asp-action="Excluir" method="post">
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-floating mb-3">
+            <center>
+                <input type="text" asp-for="Nome" readonly class="form-control-plaintext" id="floatingPlaintextInput" placeholder="" value="">
+                <label for="floatingPlaintextInput">@Model.Nome</label>
+            </center>
+        </div>
+        <div class="form-floating mb-3">
+            <center>
+                <input type="text" asp-for="Email" readonly class="form-control-plaintext" id="floatingPlaintextInput" placeholder="" value="">
+                <label for="floatingPlaintextInput">@Model.Email</label>
+            </center>
+        </div>
+        <div class="form-floating mb-5">
+            <center>
+                <input type="text" asp-for="Login" readonly class="form-control-plaintext" id="floatingPlaintextInput" placeholder="" value="">
+                <label for="floatingPlaintextInput">@Model.Login</label>
+            </center>
+        </div>
+        <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+            <input class="btn btn-danger" type="submit" value="Excluir">
+            <a type="button" asp-controller="Usuario" asp-action="Index" class="btn btn-success">Voltar</a>
+        </div>
+    </form>
+</div>
+
