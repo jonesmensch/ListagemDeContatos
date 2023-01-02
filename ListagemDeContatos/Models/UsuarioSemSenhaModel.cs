@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ListagemDeContatos.Models
 {
-    public class UsuarioModel
+    public class UsuarioSemSenhaModel
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Digite seu nome!")]
@@ -14,10 +14,6 @@ namespace ListagemDeContatos.Models
         [EmailAddress(ErrorMessage = "O Email digitado é inválido!")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Informe o perfil!")]
-        public PerfilEnum Perfil { get; set; }
-        [Required(ErrorMessage = "Digite sua senha!")]
-        public string Senha { get; set; }
-        public DateTime DataCriacao { get; set; }
-        public DateTime? DataAlteracao { get; set; }
+        public PerfilEnum? Perfil { get; set; }
     }
 }

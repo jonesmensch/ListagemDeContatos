@@ -27,15 +27,11 @@
     <div class="mb-3">
         <label for="Perfil" class="form-label">Perfil</label>
         <select asp-for="Perfil" class="form-control">
-            <option value="0">Selecione</option>
+            <option value="">Selecione</option>
             <option value="@PerfilEnum.Admin">Administrador</option>
             <option value="@PerfilEnum.Padrao">Padrao</option>
         </select>
-    </div>
-    <div class="mb-3">
-        <label for="telefone" class="form-label">Senha</label>
-        <input type="password" asp-for="Senha" class="form-control" id="exampleFormControlInput1" placeholder="Escreva sua senha">
-        @Html.ValidationMessageFor(x => x.Senha)
+        @Html.ValidationMessageFor(x => x.Perfil)
     </div>
     <div>
         <hr />
