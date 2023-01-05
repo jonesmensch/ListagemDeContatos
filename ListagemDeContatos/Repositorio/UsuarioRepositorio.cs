@@ -12,10 +12,17 @@ namespace ListagemDeContatos.Repositorio
         {
             _bancoContext = bancoContext;
         }
+
         public List<UsuarioModel> FindAll()
         {
             return _bancoContext.Usuarios.ToList();
         }
+
+        public UsuarioModel FindByLogin(string login)
+        {
+            return _bancoContext.Usuarios.FirstOrDefault(x => x.Login == login);
+        }
+
         public UsuarioModel FindById(int id)
         {
             return _bancoContext.Usuarios.FirstOrDefault(x => x.Id == id);
@@ -38,14 +45,12 @@ namespace ListagemDeContatos.Repositorio
             {
                 throw new System.Exception("Ocorreu um erro ao atualizar!");
             }
-            else
-            {
-                usuarioDB.Nome = usuario.Nome;
-                usuarioDB.Email = usuario.Email;
-                usuarioDB.Login = usuario.Login;
-                usuarioDB.Perfil = usuario.Perfil;
-                usuarioDB.DataAlteracao = DateTime.Now;
-            }
+
+            usuarioDB.Nome = usuario.Nome;
+            usuarioDB.Email = usuario.Email;
+            usuarioDB.Login = usuario.Login;
+            usuarioDB.Perfil = usuario.Perfil;
+            usuarioDB.DataAlteracao = DateTime.Now;
 
             _bancoContext.Usuarios.Update(usuarioDB);
             _bancoContext.SaveChanges();
@@ -53,19 +58,19 @@ namespace ListagemDeContatos.Repositorio
             return usuarioDB;
         }
 
-        public UsuarioModel Excluir(UsuarioModel usuario)
+        public bool Excluir(int id)
         {
-            var usuarioDB = FindById(usuario.Id);
+            UsuarioModel usuarioDB = FindById(id);
 
             if (usuarioDB == null)
             {
-                throw new System.Exception("Contato não encontrado!");
+                throw new System.Exception("Houve um erro ao deletar o usuário!");
             }
 
             _bancoContext.Usuarios.Remove(usuarioDB);
             _bancoContext.SaveChanges();
 
-            return usuarioDB;
+            return true;
         }
     }
 }

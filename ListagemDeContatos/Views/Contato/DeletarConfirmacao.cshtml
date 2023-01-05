@@ -7,7 +7,7 @@
     <h1 class="display-10">Tem certeza que deseja excluir este contato?</h1>
     <hr />
 
-    <form asp-controller="Contato" asp-action="Excluir" method="post">
+    <form asp-controller="Contato" asp-action="Excluir">
         <input type="hidden" asp-for="Id" />
 
         <div class="form-floating mb-3">
@@ -33,7 +33,6 @@
             <a type="button" asp-controller="Contato" asp-action="Index" class="btn btn-success">Voltar</a>
         </div>
     </form>
-
 
 </div>
 

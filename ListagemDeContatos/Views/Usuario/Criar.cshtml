@@ -8,33 +8,33 @@
     <h1 class="display-10">Criar novo usuário</h1>
 </div>
 
-<form asp-controller="Usuario" asp-action="NovoUsuario" method="post">
+<form asp-controller="Usuario" asp-action="Criar" method="post">
     <div class="mb-3">
         <label for="nome" class="form-label">Nome</label>
-        <input type="text" asp-for="Nome" class="form-control" id="exampleFormControlInput1" placeholder="Escreva seu nome">
+        <input type="text" asp-for="Nome" class="form-control" id="" placeholder="Escreva seu nome">
         @Html.ValidationMessageFor(x => x.Nome)
     </div>
     <div class="mb-3">
         <label for="email" class="form-label">Email</label>
-        <input type="email" asp-for="Email" class="form-control" id="exampleFormControlInput1" placeholder="Escreva seu e-mail">
+        <input type="email" asp-for="Email" class="form-control" id="" placeholder="Escreva seu e-mail">
         @Html.ValidationMessageFor(x => x.Email)
     </div>
     <div class="mb-3">
         <label for="Login" class="form-label">Login</label>
-        <input type="text" asp-for="Login" class="form-control" id="exampleFormControlInput1" placeholder="Escreva seu Login de acesso">
+        <input type="text" asp-for="Login" class="form-control" id="" placeholder="Escreva seu Login de acesso">
         @Html.ValidationMessageFor(x => x.Login)
     </div>
     <div class="mb-3">
         <label for="Perfil" class="form-label">Perfil</label>
         <select asp-for="Perfil" class="form-control">
-            <option value="0">Selecione</option>
+            <option value="">Selecione</option>
             <option value="@PerfilEnum.Admin">Administrador</option>
             <option value="@PerfilEnum.Padrao">Padrao</option>
         </select>
     </div>
     <div class="mb-3">
         <label for="telefone" class="form-label">Senha</label>
-        <input type="password" asp-for="Senha" class="form-control" id="exampleFormControlInput1" placeholder="Escreva sua senha">
+        <input type="password" asp-for="Senha" class="form-control" id="" placeholder="Escreva sua senha">
         @Html.ValidationMessageFor(x => x.Senha)
     </div>
     <div>

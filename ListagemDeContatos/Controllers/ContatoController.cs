@@ -18,23 +18,26 @@ namespace ListagemDeContatos.Controllers
             var contato = _contatoRepositorio.FindAll();
             return View(contato);
         }
+
         public IActionResult Editar(int id)
         {
             var contato = _contatoRepositorio.FindById(id);
             return View(contato);
         }
+
         public IActionResult DeletarConfirmacao(int id)
         {
             var contato = _contatoRepositorio.FindById(id);
             return View(contato);
         }
-        public IActionResult NovoContato()
+
+        public IActionResult Criar()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult NovoContato(ContatoModel contato)
+        public IActionResult Criar(ContatoModel contato)
         {
             try
             {
@@ -45,7 +48,7 @@ namespace ListagemDeContatos.Controllers
                     return RedirectToAction("Index");
                 }
 
-                return View("Index");
+                return View(contato);
             }
             catch (Exception erro)
             {
@@ -62,6 +65,7 @@ namespace ListagemDeContatos.Controllers
                 if (ModelState.IsValid)
                 {
                     _contatoRepositorio.Editar(contato);
+
                     TempData["MensagemSucesso"] = "Contato alterado com sucesso!";
                     return RedirectToAction(nameof(Index));
                 }
@@ -74,13 +78,12 @@ namespace ListagemDeContatos.Controllers
                 return RedirectToAction("Index");
             }
         }
-
-        [HttpPost]
-        public IActionResult Excluir(ContatoModel contato)
+        
+        public IActionResult Excluir(int id)
         {
             try
             {
-                _contatoRepositorio.Excluir(contato);
+                _contatoRepositorio.Excluir(id);
                 TempData["MensagemSucesso"] = "Contato excluido com sucesso!";
                 return RedirectToAction(nameof(Index));
             }

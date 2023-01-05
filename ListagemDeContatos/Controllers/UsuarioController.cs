@@ -18,33 +18,38 @@ namespace ListagemDeContatos.Controllers
             var usuario = _usuarioRepositorio.FindAll();
             return View(usuario);
         }
+
         public IActionResult Editar(int id)
         {
             var usuario = _usuarioRepositorio.FindById(id);
             return View(usuario);
         }
+
         public IActionResult DeletarConfirmacao(int id)
         {
             var usuario = _usuarioRepositorio.FindById(id);
             return View(usuario);
         }
-        public IActionResult NovoUsuario()
+
+        public IActionResult Criar()
         {
             return View();
         }
+
         [HttpPost]
-        public IActionResult NovoUsuario(UsuarioModel usuario)
+        public IActionResult Criar(UsuarioModel usuario)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     _usuarioRepositorio.Adicionar(usuario);
+
                     TempData["MensagemSucesso"] = "Usuário cadastrado com sucesso!";
                     return RedirectToAction("Index");
                 }
 
-                return View("Index");
+                return View(usuario);
             }
             catch (Exception erro)
             {
@@ -71,7 +76,8 @@ namespace ListagemDeContatos.Controllers
                         Perfil = (Enums.PerfilEnum)usuarioSemSenhaModel.Perfil
                     };
 
-                    _usuarioRepositorio.Editar(usuario);
+                    usuario = _usuarioRepositorio.Editar(usuario);
+
                     TempData["MensagemSucesso"] = "Usuário alterado com sucesso!";
                     return RedirectToAction(nameof(Index));
                 }
@@ -84,13 +90,12 @@ namespace ListagemDeContatos.Controllers
                 return RedirectToAction("Index");
             }
         }
-
-        [HttpPost]
-        public IActionResult Excluir(UsuarioModel usuario)
+        
+        public IActionResult Excluir(int id)
         {
             try
             {
-                _usuarioRepositorio.Excluir(usuario);
+                _usuarioRepositorio.Excluir(id);
                 TempData["MensagemSucesso"] = "Usuário excluido com sucesso!";
                 return RedirectToAction(nameof(Index));
             }

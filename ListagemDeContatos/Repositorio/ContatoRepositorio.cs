@@ -39,12 +39,10 @@ namespace ListagemDeContatos.Repositorio
             {
                 throw new System.Exception("Ocorreu um erro ao atualizar!");
             }
-            else
-            {
-                contatoDB.Nome = contato.Nome;
-                contatoDB.Email = contato.Email;
-                contatoDB.Telefone = contato.Telefone;
-            }
+
+            contatoDB.Nome = contato.Nome;
+            contatoDB.Email = contato.Email;
+            contatoDB.Telefone = contato.Telefone;
 
             _bancoContext.Contato.Update(contatoDB);
             _bancoContext.SaveChanges();
@@ -52,19 +50,19 @@ namespace ListagemDeContatos.Repositorio
             return contatoDB;
         }
 
-        public ContatoModel Excluir(ContatoModel contato)
+        public bool Excluir(int id)
         {
-            var contatoDB = FindById(contato.Id);
+            var contatoDB = FindById(id);
 
             if (contatoDB == null)
             {
-                throw new System.Exception("Contato não encontrado!");
+                throw new System.Exception("Houve um erro ao deletar o contato!");
             }
 
             _bancoContext.Contato.Remove(contatoDB);
             _bancoContext.SaveChanges();
 
-            return contatoDB;
+            return true;
         }
     }
 }

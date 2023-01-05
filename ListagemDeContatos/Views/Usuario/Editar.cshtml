@@ -9,6 +9,8 @@
 </div>
 
 <form asp-controller="Usuario" asp-action="Editar" method="post">
+    <input type="hidden" asp-for="Id" />
+
     <div class="mb-3">
         <label for="nome" class="form-label">Nome</label>
         <input type="text" asp-for="Nome" class="form-control" id="exampleFormControlInput1" placeholder="Escreva seu nome">

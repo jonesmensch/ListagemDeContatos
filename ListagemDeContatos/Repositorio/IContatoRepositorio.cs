@@ -9,6 +9,6 @@ namespace ListagemDeContatos.Repositorio
         ContatoModel FindById(int id);
         ContatoModel Editar(ContatoModel contato);
         ContatoModel Adicionar(ContatoModel contato);
-        ContatoModel Excluir(ContatoModel contato);
+        bool Excluir(int id);
     }
 }
